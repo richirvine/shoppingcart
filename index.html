@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Shopping basket test</title>	
+    <link rel="stylesheet" href="app.css">
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.0.4/angular.js"> </script>
+	<script src="https://code.angularjs.org/1.2.28/angular-route.min.js"></script>	
+	<script src="app.js"> </script>
+  </head>
+  
+  <body ng-app="shoppingApp">
+  
+	<header id="page-header">
+      <h1>Shopping basket test</h1>
+    </header>
+
+    <div class="main" ng-controller="productsCtrl">
+
+		<section class="products" >
+			<header>
+			  <h3>Products</h3>
+			</header>
+				
+			
+			<div class="itemList" ng-repeat="product in products">			
+				<div class="image">
+					<img ng-src="{{path}}assets/images/{{product.thumbnail}}" />
+				</div>
+				<div class="details">
+					<div class="name">{{product.name}}</div>
+					<div>{{product.price  | currency:"£"}}</div>
+					<div class="button" ng-click="basketAdd($index);">Add to Basket</div>
+				</div>
+			</div>
+			
+			
+		</section>
+		
+		 <section class="shopping-basket">
+			<header>
+			  <h3>Basket</h3>
+			</header>
+
+			<div class="itemList" ng-repeat="(key,val) in basket"> 				
+				<div class="image">			
+					<img ng-src="{{path}}assets/images/{{val.item.thumbnail}}" />
+				</div>
+				<div class="details">
+					<div>{{val.item.name}}</div>
+					<div>qty {{val.qty}}</div>		
+					<div class="button" ng-click="basketRemove(key);">Remove</div>
+				</div>
+			</div>
+
+			<div class="basket-total-price">
+			  <span class="bold">Total: {{total | currency:"£"}}</span>
+			  <span class="price"></span>
+			</div>
+		</section>
+    
+	</div>	
+	
+
+	
+  </body>
+</html>
